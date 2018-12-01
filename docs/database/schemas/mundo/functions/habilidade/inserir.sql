@@ -1,6 +1,6 @@
 CREATE OR REPLACE FUNCTION mundo.inserirHabilidade(
-    pNome mundo.habilidade.id%TYPE
-) RETURNS void
+    pNome mundo.habilidade.nome%TYPE
+) RETURNS json
 AS $$
     /*
         Documentação
@@ -12,7 +12,19 @@ AS $$
                 SELECT mundo.inserirHabilidade(nome);
     */
     BEGIN
+        IF EXISTS (SELECT id FROM mundo.habilidade WHERE unaccent(nome) ILIKE unaccent(pNome)) THEN
+            RETURN json_build_object(
+                'message', 'Já existe uma habilidade com este nome',
+                'code', 1
+            );
+        END IF;
+
         INSERT INTO mundo.habilidade(nome)
             VALUES(pNome);
+
+        RETURN json_build_object(
+            'message', 'Salvo com sucesso',
+            'code', 0
+        );
     END;
 $$ LANGUAGE plpgsql;

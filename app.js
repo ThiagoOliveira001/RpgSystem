@@ -9,6 +9,7 @@ const config = require('./config/config');
         app.use(config.response);
 
         require('./src/api/routes/ping')(app);
+        require('./src/api/routes/set')(app,__dirname + '/src');
 
         app.listen(config.settings.api.port, () => {
             console.log(`SERVER RUNNING ON PORT ${config.settings.api.port}`);

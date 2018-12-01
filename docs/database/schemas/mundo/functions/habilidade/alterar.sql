@@ -1,7 +1,7 @@
 CREATE OR REPLACE FUNCTION mundo.alterarHabilidade(
     pId   mundo.habilidade.id%TYPE,
     pNome mundo.habilidade.nome%TYPE
-) RETURNS void
+) RETURNS json
 AS $$
     /*
         Documentacao
@@ -13,8 +13,20 @@ AS $$
                 SELECT mundo.alterarHabilidade(id,nome);
     */
     BEGIN
+        IF EXISTS (SELECT id FROM mundo.habilidade WHERE unaccent(nome) ILIKE unaccent(pNome)) THEN
+            RETURN json_build_object(
+                'message', 'Já existe uma habilidade com este nome',
+                'code', 1
+            );
+        END IF;
+
         UPDATE mundo.habilidade
             SET nome = pNome
         WHERE id = pId;
+
+        RETURN json_build_object(
+            'message', 'Alterado com sucesso',
+            'code', 0
+        );
     END;
 $$ LANGUAGE plpgsql;

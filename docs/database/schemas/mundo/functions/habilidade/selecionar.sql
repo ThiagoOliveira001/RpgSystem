@@ -19,6 +19,6 @@ AS $$
                 h.id,
                 h.nome
             FROM mundo.habilidade AS h
-            WHERE (pNome IS NULL OR h.nome = pNome);
+            WHERE (pNome IS NULL OR unaccent(h.nome) ILIKE ( '%' || unaccent(pNome) || '%'));
     END;
 $$ LANGUAGE plpgsql;
