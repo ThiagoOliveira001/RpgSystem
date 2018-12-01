@@ -8,7 +8,7 @@ module.exports = async (app, pathSrc) => {
     let controllers = await readDir(path);
 
     routes.forEach(rt => {
-        console.log(`app[${rt.verbo}](/api/${rt.rota}, controllers[${rt.funcionalidade}][${rt.metodo}])`);
+        console.log(`Verbo: ${rt.verbo} -  Rota: /api/${rt.rota} - Controller: ${rt.funcionalidade} - Função: ${rt.metodo}`);
         app[rt.verbo](`/api/${rt.rota}`, handleError(controllers[rt.funcionalidade][rt.metodo])); 
     });
 }
