@@ -1,0 +1,36 @@
+{
+  "name": "rpg-system",
+  "version": "1.0.0",
+  "description": "Sistema para jogo de rpg",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThiagoOliveira001/RpgSystem.git"
+  },
+  "keywords": [
+    "Rpg",
+    "Sistema",
+    "Rpg"
+  ],
+  "author": "Thiago Silva de Oliveira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThiagoOliveira001/RpgSystem/issues"
+  },
+  "homepage": "https://github.com/ThiagoOliveira001/RpgSystem#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.14"
+  }
+}
