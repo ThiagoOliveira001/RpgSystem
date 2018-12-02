@@ -2,17 +2,17 @@ const Scope = require('smn-schema-validator');
 
 module.exports = {
     isValid
-}
+};
 
-async function isValid(params) {
+async function  isValid(params) {
     const validation = {
         nome: {
             required: true,
             type: String,
-            maxLength: 50,
-            minLength: 3
+            minLength: 3,
+            maxLength: 50
         }
     };
 
-    new Scope(params,validation);
+    new Scope(params, validation);
 }
